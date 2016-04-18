@@ -2,13 +2,22 @@
  *  Working Tutorial File
  */
 
+// SAMPLE DATA
+var data = [
+  {id: 1, author: "Petes Hunt", text: "This is one comment"},
+  {id: 2, author: "Jordan Walke", text: "This is *another* comment"},
+  {id:3, author: "Julie Margolia", text: "LIKE AND SHARE IF YOU AGREE"},
+  {id:4, author: "Carol Pyle", text: "I LOVE LAMP"}
+];
+
+
 ///[ COMMENT BOX ]
 var CommentBox = React.createClass({
   render: function(){
     return (
       <div className="commentBox">
         <h2>Comments</h2>
-        <CommentList />
+        <CommentList data={this.props.data}/>
         <CommentForm />
       </div>
       );
@@ -18,12 +27,22 @@ var CommentBox = React.createClass({
 //[ COMMENT LIST ]
 var CommentList = React.createClass({
   render: function(){
-    return (
-      <div className="commentList">
-        <Comment author="Pete Hunt">This is one comment</Comment>
-        <Comment author="Jordan">This is *another* comment</Comment>
-      </div>
-    );
+    
+    //Create list of Comment components
+    var commentNodes = this.props.data.map(function(comment){
+        return (
+          <Comment key={comment.id} author={comment.author}>
+            {comment.text}
+          </Comment>
+        );
+      });
+      
+      //Return component list
+      return (
+        <div className="commentList">
+          {commentNodes}
+        </div>
+      );
   }
 });
 
@@ -57,4 +76,4 @@ var Comment = React.createClass({
 });
 
 //Render a CommentBox in the content div
-ReactDOM.render(<CommentBox />, document.getElementById('content'));
+ReactDOM.render(<CommentBox data={data} />, document.getElementById('content'));
