@@ -60,3 +60,15 @@ p, ul {
 ul {
   padding-left: 30px;
 }
+
+.m10 {
+  margin:10px;
+}
+
+.mt10 {
+  margin-top:10px;
+}
+
+.fl{float:left;}
+.fr{float:right;}
+.fcon::after{ clear:both; }

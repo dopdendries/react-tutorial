@@ -52,7 +52,7 @@ var CommentBox = React.createClass({
     render: function(){
       return (
         <div className="commentBox">
-          <h2>Comments</h2>
+          <h1>Comments</h1>
           <CommentList data={this.state.data}/>
           <CommentForm onSubmitCallback={this.handleCommentSubmit}/>
         </div>
@@ -90,7 +90,7 @@ var Comment = React.createClass({
   },
   render: function(){
     return (
-      <div className="comment">
+      <div className="comment mt10">
         <h2 className="commentAuthor">
           {this.props.author}
         </h2>
@@ -126,7 +126,7 @@ var CommentForm = React.createClass({
   },
   render: function(){
     return(
-      <form className="commentForm" onSubmit={this.handleSubmit}>
+      <form className="commentForm fcon" onSubmit={this.handleSubmit}>
         <input 
           type="text" 
           placeholder="Your name" 
