@@ -2,15 +2,6 @@
  *  Working Tutorial File
  */
 
-// SAMPLE DATA
-var data = [
-  {id: 1, author: "Petes Hunt", text: "This is one comment"},
-  {id: 2, author: "Jordan Walke", text: "This is *another* comment"},
-  {id:3, author: "Julie Margolia", text: "LIKE AND SHARE IF YOU AGREE"},
-  {id:4, author: "Carol Pyle", text: "I LOVE LAMP"}
-];
-
-
 ///[ COMMENT BOX ]
 var CommentBox = React.createClass({
   getInitialState: function(){
