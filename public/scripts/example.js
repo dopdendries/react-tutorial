@@ -2,6 +2,8 @@
  *  Working Tutorial File
  */
 
+var DEFAULT_ID = 0;
+
 ///[ COMMENT BOX ]
 var CommentBox = React.createClass({
   getInitialState: function(){
@@ -21,6 +23,15 @@ var CommentBox = React.createClass({
       });
     },
     handleCommentSubmit: function(comment){
+      
+      var comments = this.state.data;
+      //
+      comment.id = DEFAULT_ID;
+      comments.push(comment);
+      this.setState({data: comments});
+      
+      console.log("new Comment"+comment.toString());
+      
       $.ajax({
         url: this.props.url,
         dataType: 'json',
@@ -71,6 +82,24 @@ var CommentList = React.createClass({
   }
 });
 
+//[ COMMENT ]
+var Comment = React.createClass({
+  rawMarkup: function(){
+    var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
+    return { __html: rawMarkup };
+  },
+  render: function(){
+    return (
+      <div className="comment">
+        <h2 className="commentAuthor">
+          {this.props.author}
+        </h2>
+        <span dangerouslySetInnerHTML={this.rawMarkup()} />
+      </div>
+    );
+  }
+});
+
 //[ COMMENT FORM ]
 var CommentForm = React.createClass({
   getInitialState: function() {
@@ -112,24 +141,6 @@ var CommentForm = React.createClass({
         />
         <input type="submit" value="Post" />
       </form>
-    );
-  }
-});
-
-//[ COMMENT ]
-var Comment = React.createClass({
-  rawMarkup: function(){
-    var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
-    return { __html: rawMarkup };
-  },
-  render: function(){
-    return (
-      <div className="comment">
-        <h2 className="commentAuthor">
-          {this.props.author}
-        </h2>
-        <span dangerouslySetInnerHTML={this.rawMarkup()} />
-      </div>
     );
   }
 });
